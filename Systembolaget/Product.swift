@@ -120,34 +120,34 @@ class Product: NSObject {
     convenience init(with dictionary: [String : Any?]) {
         self.init()
         
-        self.number = dictionary[Keys.Number] as? String
-        self.articleID = dictionary[Keys.ArticleID] as? String
-        self.productNumber = dictionary[Keys.ProductNumber] as? String
-        self.name = dictionary[Keys.Name] as? String
-        self.name2 = dictionary[Keys.Name2] as? String
-        self.priceVATIncluded = dictionary[Keys.PriceVATIncluded] as? String
-        self.volumeInML = dictionary[Keys.VolumeInML] as? String
-        self.pricePerLiter = dictionary[Keys.PricePerLiter] as? String
-        self.soldSince = dictionary[Keys.SoldSince] as? String
-        self.expired = dictionary[Keys.Expired] as? String
-        self.productGroup = dictionary[Keys.ProductGroup] as? String
-        self.typeDesc = dictionary[Keys.TypeDesc] as? String
-        self.style = dictionary[Keys.Style] as? String
-        self.packaging = dictionary[Keys.Packaging] as? String
-        self.seal = dictionary[Keys.Seal] as? String
-        self.origin = dictionary[Keys.Origin] as? String
-        self.originCountryName = dictionary[Keys.OriginCountryName] as? String
-        self.manufacturer = dictionary[Keys.Manufacturer] as? String
-        self.provider = dictionary[Keys.Provider] as? String
-        self.fromYear = dictionary[Keys.FromYear] as? String
-        self.sampledYear = dictionary[Keys.SampledYear] as? String
-        self.alchoholLevel = dictionary[Keys.AlchoholLevel] as? String
-        self.supply = dictionary[Keys.Supply] as? String
-        self.supplyText = dictionary[Keys.SupplyText] as? String
-        self.ecological = dictionary[Keys.Ecological] as? String
-        self.koscher = dictionary[Keys.Koscher] as? String
-        self.rawIngredientsDescription = dictionary[Keys.RawIngredientsDescription] as? String
-        
+        self.number = dictionary[Keys.Number] as? String ?? "N/A"
+        self.articleID = dictionary[Keys.ArticleID] as? String ?? "N/A"
+        self.productNumber = dictionary[Keys.ProductNumber] as? String ?? "N/A"
+        self.name = dictionary[Keys.Name] as? String ?? "N/A"
+        self.name2 = dictionary[Keys.Name2] as? String ?? "N/A"
+        self.priceVATIncluded = dictionary[Keys.PriceVATIncluded] as? String ?? "N/A"
+        self.volumeInML = dictionary[Keys.VolumeInML] as? String ?? "N/A"
+        self.pricePerLiter = dictionary[Keys.PricePerLiter] as? String ?? "N/A"
+        self.soldSince = dictionary[Keys.SoldSince] as? String ?? "N/A"
+        self.expired = dictionary[Keys.Expired] as? String ?? "N/A"
+        self.productGroup = dictionary[Keys.ProductGroup] as? String ?? "N/A"
+        self.typeDesc = dictionary[Keys.TypeDesc] as? String ?? "N/A"
+        self.style = dictionary[Keys.Style] as? String ?? "N/A"
+        self.packaging = dictionary[Keys.Packaging] as? String ?? "N/A"
+        self.seal = dictionary[Keys.Seal] as? String ?? "N/A"
+        self.origin = dictionary[Keys.Origin] as? String ?? "N/A"
+        self.originCountryName = dictionary[Keys.OriginCountryName] as? String ?? "N/A"
+        self.manufacturer = dictionary[Keys.Manufacturer] as? String ?? "N/A"
+        self.provider = dictionary[Keys.Provider] as? String ?? "N/A"
+        self.fromYear = dictionary[Keys.FromYear] as? String ?? "N/A"
+        self.sampledYear = dictionary[Keys.SampledYear] as? String ?? "N/A"
+        self.alchoholLevel = dictionary[Keys.AlchoholLevel] as? String ?? "N/A"
+        self.supply = dictionary[Keys.Supply] as? String ?? "N/A"
+        self.supplyText = dictionary[Keys.SupplyText] as? String ?? "N/A"
+        self.ecological = dictionary[Keys.Ecological] as? String ?? "N/A"
+        self.koscher = dictionary[Keys.Koscher] as? String ?? "N/A"
+        self.rawIngredientsDescription = dictionary[Keys.RawIngredientsDescription] as? String ?? "N/A"
+
         self.lastUpdatedDate = Date()
     }
 }
