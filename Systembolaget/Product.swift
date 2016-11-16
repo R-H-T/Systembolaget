@@ -11,7 +11,35 @@ import Foundation
 class Product: NSObject {
     
     // MARK: - Properties
-
+    
+    // We'll temprorarily asume everything property to be a string to avoid confusion.
+    var number: String?
+    var articleID: String?
+    var productNumber: String?
+    var name: String?
+    var name2: String?
+    var priceVATIncluded: String?
+    var volumeInML: String?
+    var pricePerLiter: String?
+    var soldSince: String?
+    var expired: String?
+    var productGroup: String?
+    var type: String?
+    var style: String?
+    var packaging: String?
+    var seal: String?
+    var origin: String?
+    var originCountryName: String?
+    var manufacturer: String?
+    var provider: String?
+    var fromYear: String?
+    var sampledYear: String?
+    var alchoholLevel: String?
+    var supply: String?
+    var supplyText: String?
+    var ecological: String?
+    var koscher: String?
+    var rawIngredientsDescription: String?
     
     struct Keys {
         
