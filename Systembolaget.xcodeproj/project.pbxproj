@@ -15,6 +15,18 @@
 		C6748E1F1DDC98B5007DABF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6748E1D1DDC98B5007DABF7 /* LaunchScreen.storyboard */; };
 		C6748E2A1DDC98B5007DABF7 /* SystembolagetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6748E291DDC98B5007DABF7 /* SystembolagetTests.swift */; };
 		C6748E351DDC98B5007DABF7 /* SystembolagetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6748E341DDC98B5007DABF7 /* SystembolagetUITests.swift */; };
+		C6748E4C1DDC9A06007DABF7 /* SystembolagetClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6748E4B1DDC9A06007DABF7 /* SystembolagetClient.swift */; };
+		C6748E4E1DDC9B76007DABF7 /* SystembolagetClient+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6748E4D1DDC9B76007DABF7 /* SystembolagetClient+Constants.swift */; };
+		C6748E681DDCAF18007DABF7 /* SMXMLDocumentResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = C6748E561DDCAF17007DABF7 /* SMXMLDocumentResponseSerializer.m */; };
+		C6748E691DDCAF18007DABF7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C6748E571DDCAF17007DABF7 /* LICENSE */; };
+		C6748E6B1DDCAF18007DABF7 /* SMXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = C6748E5A1DDCAF17007DABF7 /* SMXMLDocument.m */; };
+		C6748E891DDCB478007DABF7 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C6748E7D1DDCB478007DABF7 /* AFHTTPSessionManager.m */; };
+		C6748E8A1DDCB478007DABF7 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C6748E801DDCB478007DABF7 /* AFNetworkReachabilityManager.m */; };
+		C6748E8B1DDCB478007DABF7 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = C6748E821DDCB478007DABF7 /* AFSecurityPolicy.m */; };
+		C6748E8C1DDCB478007DABF7 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C6748E841DDCB478007DABF7 /* AFURLRequestSerialization.m */; };
+		C6748E8D1DDCB478007DABF7 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C6748E861DDCB478007DABF7 /* AFURLResponseSerialization.m */; };
+		C6748E8E1DDCB478007DABF7 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C6748E881DDCB478007DABF7 /* AFURLSessionManager.m */; };
+		C6748E901DDCBD4E007DABF7 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6748E8F1DDCBD4E007DABF7 /* Product.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +61,28 @@
 		C6748E301DDC98B5007DABF7 /* SystembolagetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SystembolagetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6748E341DDC98B5007DABF7 /* SystembolagetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystembolagetUITests.swift; sourceTree = "<group>"; };
 		C6748E361DDC98B5007DABF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6748E4B1DDC9A06007DABF7 /* SystembolagetClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystembolagetClient.swift; sourceTree = "<group>"; };
+		C6748E4D1DDC9B76007DABF7 /* SystembolagetClient+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SystembolagetClient+Constants.swift"; sourceTree = "<group>"; };
+		C6748E551DDCAF17007DABF7 /* SMXMLDocumentResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMXMLDocumentResponseSerializer.h; sourceTree = "<group>"; };
+		C6748E561DDCAF17007DABF7 /* SMXMLDocumentResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMXMLDocumentResponseSerializer.m; sourceTree = "<group>"; };
+		C6748E571DDCAF17007DABF7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		C6748E591DDCAF17007DABF7 /* SMXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMXMLDocument.h; sourceTree = "<group>"; };
+		C6748E5A1DDCAF17007DABF7 /* SMXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMXMLDocument.m; sourceTree = "<group>"; };
+		C6748E7A1DDCB04F007DABF7 /* Systembolaget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Systembolaget-Bridging-Header.h"; sourceTree = "<group>"; };
+		C6748E7C1DDCB478007DABF7 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		C6748E7D1DDCB478007DABF7 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		C6748E7E1DDCB478007DABF7 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		C6748E7F1DDCB478007DABF7 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		C6748E801DDCB478007DABF7 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		C6748E811DDCB478007DABF7 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		C6748E821DDCB478007DABF7 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		C6748E831DDCB478007DABF7 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		C6748E841DDCB478007DABF7 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		C6748E851DDCB478007DABF7 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		C6748E861DDCB478007DABF7 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		C6748E871DDCB478007DABF7 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		C6748E881DDCB478007DABF7 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		C6748E8F1DDCBD4E007DABF7 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +134,11 @@
 			isa = PBXGroup;
 			children = (
 				C6748E111DDC98B4007DABF7 /* AppDelegate.swift */,
-				C6748E131DDC98B4007DABF7 /* ViewController.swift */,
-				C6748E151DDC98B5007DABF7 /* Main.storyboard */,
-				C6748E1B1DDC98B5007DABF7 /* Assets.xcassets */,
-				C6748E1D1DDC98B5007DABF7 /* LaunchScreen.storyboard */,
-				C6748E201DDC98B5007DABF7 /* Info.plist */,
-				C6748E181DDC98B5007DABF7 /* Systembolaget.xcdatamodeld */,
+				C6748E461DDC9985007DABF7 /* Model */,
+				C6748E471DDC998C007DABF7 /* View */,
+				C6748E451DDC9979007DABF7 /* Controller */,
+				C6748E481DDC999C007DABF7 /* Storyboard */,
+				C6748E491DDC99B1007DABF7 /* Resources */,
 			);
 			path = Systembolaget;
 			sourceTree = "<group>";
@@ -126,6 +159,109 @@
 				C6748E361DDC98B5007DABF7 /* Info.plist */,
 			);
 			path = SystembolagetUITests;
+			sourceTree = "<group>";
+		};
+		C6748E451DDC9979007DABF7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C6748E131DDC98B4007DABF7 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		C6748E461DDC9985007DABF7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C6748E4A1DDC99D4007DABF7 /* Client */,
+				C6748E8F1DDCBD4E007DABF7 /* Product.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C6748E471DDC998C007DABF7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C6748E481DDC999C007DABF7 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				C6748E151DDC98B5007DABF7 /* Main.storyboard */,
+				C6748E1D1DDC98B5007DABF7 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		C6748E491DDC99B1007DABF7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C6748E7A1DDCB04F007DABF7 /* Systembolaget-Bridging-Header.h */,
+				C6748E4F1DDCA3D3007DABF7 /* Third-Party */,
+				C6748E1B1DDC98B5007DABF7 /* Assets.xcassets */,
+				C6748E201DDC98B5007DABF7 /* Info.plist */,
+				C6748E181DDC98B5007DABF7 /* Systembolaget.xcdatamodeld */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		C6748E4A1DDC99D4007DABF7 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				C6748E4B1DDC9A06007DABF7 /* SystembolagetClient.swift */,
+				C6748E4D1DDC9B76007DABF7 /* SystembolagetClient+Constants.swift */,
+			);
+			name = Client;
+			sourceTree = "<group>";
+		};
+		C6748E4F1DDCA3D3007DABF7 /* Third-Party */ = {
+			isa = PBXGroup;
+			children = (
+				C6748E7B1DDCB478007DABF7 /* AFNetworking */,
+				C6748E521DDCAF17007DABF7 /* xmldocument */,
+			);
+			name = "Third-Party";
+			sourceTree = "<group>";
+		};
+		C6748E521DDCAF17007DABF7 /* xmldocument */ = {
+			isa = PBXGroup;
+			children = (
+				C6748E541DDCAF17007DABF7 /* Extras */,
+				C6748E571DDCAF17007DABF7 /* LICENSE */,
+				C6748E591DDCAF17007DABF7 /* SMXMLDocument.h */,
+				C6748E5A1DDCAF17007DABF7 /* SMXMLDocument.m */,
+			);
+			path = xmldocument;
+			sourceTree = "<group>";
+		};
+		C6748E541DDCAF17007DABF7 /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				C6748E551DDCAF17007DABF7 /* SMXMLDocumentResponseSerializer.h */,
+				C6748E561DDCAF17007DABF7 /* SMXMLDocumentResponseSerializer.m */,
+			);
+			path = Extras;
+			sourceTree = "<group>";
+		};
+		C6748E7B1DDCB478007DABF7 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				C6748E7C1DDCB478007DABF7 /* AFHTTPSessionManager.h */,
+				C6748E7D1DDCB478007DABF7 /* AFHTTPSessionManager.m */,
+				C6748E7E1DDCB478007DABF7 /* AFNetworking.h */,
+				C6748E7F1DDCB478007DABF7 /* AFNetworkReachabilityManager.h */,
+				C6748E801DDCB478007DABF7 /* AFNetworkReachabilityManager.m */,
+				C6748E811DDCB478007DABF7 /* AFSecurityPolicy.h */,
+				C6748E821DDCB478007DABF7 /* AFSecurityPolicy.m */,
+				C6748E831DDCB478007DABF7 /* AFURLRequestSerialization.h */,
+				C6748E841DDCB478007DABF7 /* AFURLRequestSerialization.m */,
+				C6748E851DDCB478007DABF7 /* AFURLResponseSerialization.h */,
+				C6748E861DDCB478007DABF7 /* AFURLResponseSerialization.m */,
+				C6748E871DDCB478007DABF7 /* AFURLSessionManager.h */,
+				C6748E881DDCB478007DABF7 /* AFURLSessionManager.m */,
+			);
+			path = AFNetworking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +374,7 @@
 				C6748E1F1DDC98B5007DABF7 /* LaunchScreen.storyboard in Resources */,
 				C6748E1C1DDC98B5007DABF7 /* Assets.xcassets in Resources */,
 				C6748E171DDC98B5007DABF7 /* Main.storyboard in Resources */,
+				C6748E691DDCAF18007DABF7 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,8 +400,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6748E141DDC98B4007DABF7 /* ViewController.swift in Sources */,
+				C6748E8A1DDCB478007DABF7 /* AFNetworkReachabilityManager.m in Sources */,
+				C6748E681DDCAF18007DABF7 /* SMXMLDocumentResponseSerializer.m in Sources */,
 				C6748E121DDC98B4007DABF7 /* AppDelegate.swift in Sources */,
+				C6748E6B1DDCAF18007DABF7 /* SMXMLDocument.m in Sources */,
+				C6748E4C1DDC9A06007DABF7 /* SystembolagetClient.swift in Sources */,
+				C6748E8B1DDCB478007DABF7 /* AFSecurityPolicy.m in Sources */,
+				C6748E8C1DDCB478007DABF7 /* AFURLRequestSerialization.m in Sources */,
 				C6748E1A1DDC98B5007DABF7 /* Systembolaget.xcdatamodeld in Sources */,
+				C6748E4E1DDC9B76007DABF7 /* SystembolagetClient+Constants.swift in Sources */,
+				C6748E8D1DDCB478007DABF7 /* AFURLResponseSerialization.m in Sources */,
+				C6748E8E1DDCB478007DABF7 /* AFURLSessionManager.m in Sources */,
+				C6748E891DDCB478007DABF7 /* AFHTTPSessionManager.m in Sources */,
+				C6748E901DDCBD4E007DABF7 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,10 +564,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Systembolaget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaweeweb.Systembolaget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Systembolaget-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -428,10 +581,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Systembolaget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaweeweb.Systembolaget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Systembolaget-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
