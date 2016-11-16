@@ -667,6 +667,7 @@
 				C6748E3B1DDC98B5007DABF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C6748E3C1DDC98B5007DABF7 /* Build configuration list for PBXNativeTarget "SystembolagetTests" */ = {
 			isa = XCConfigurationList;
@@ -675,6 +676,7 @@
 				C6748E3E1DDC98B5007DABF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C6748E3F1DDC98B5007DABF7 /* Build configuration list for PBXNativeTarget "SystembolagetUITests" */ = {
 			isa = XCConfigurationList;
@@ -683,6 +685,7 @@
 				C6748E411DDC98B5007DABF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

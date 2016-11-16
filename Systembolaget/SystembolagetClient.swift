@@ -38,12 +38,16 @@ class SystembolagetClient: NSObject {
     /// Return a list of products with a completion handler (Private)
     fileprivate func _getProducts(completion: @escaping CompletionHandler) {
         
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
         
         guard let url = URL(string: Constants.SAFE_URL) else {
             
             let error = NSError(domain: "SystembolagetClient.getProducts", code: 0, userInfo: ["Error" : "URL Returned Null. Failed to Proceed."]);
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             completion(nil, error)
             
@@ -66,6 +70,8 @@ class SystembolagetClient: NSObject {
                 guard let data = data else {
                     
                     let error = NSError(domain: "SystembolagetClient.getProducts", code: 2, userInfo: ["Error" : "Data returned Null. Failed to proceed."]);
+                    
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     
                     completion(nil, error)
                     
@@ -123,14 +129,20 @@ class SystembolagetClient: NSObject {
                             productDict = [:]
                         }
                         
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                        
                         completion(newProducts, nil)
                         
                     } else {
+                        
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
                         
                         completion(nil, NSError(domain: "SystemBolaget.client", code: 3, userInfo: ["Error" : "Error fetching products from xml document."]))
                     }
                     
                 } catch let error as NSError {
+                    
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     
                     completion(nil, error)
                 }
@@ -142,6 +154,8 @@ class SystembolagetClient: NSObject {
                 let error = NSError(domain: "SystembolagetClient.getProducts", code: 1, userInfo: ["Error" : "URL Session Task Failed: \(error!.localizedDescription)"])
                 
                 print(error.localizedDescription)
+                
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 
                 completion(nil, error)
             }
