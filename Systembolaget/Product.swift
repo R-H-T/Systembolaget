@@ -24,7 +24,7 @@ class Product: NSObject {
     var soldSince: String?
     var expired: String?
     var productGroup: String?
-    var type: String?
+    var typeDesc: String?
     var style: String?
     var packaging: String?
     var seal: String?
@@ -41,6 +41,8 @@ class Product: NSObject {
     var koscher: String?
     var rawIngredientsDescription: String?
     
+    var lastUpdatedDate = Date()
+    
     struct Keys {
         
         static let Number = "nr"
@@ -54,7 +56,7 @@ class Product: NSObject {
         static let SoldSince = "Saljstart"
         static let Expired = "Utgått"
         static let ProductGroup = "Varugrupp"
-        static let `Type` = "Typ"
+        static let TypeDesc = "Typ"
         static let Style = "Stil"
         static let Packaging = "Forpackning"
         static let Seal = "Forslutning"
@@ -112,4 +114,39 @@ class Product: NSObject {
         // init
     }
 
+    
+    // Convenience initializer which takes a dictionary as its argument
+    convenience init(with dictionary: [String : Any?]) {
+        self.init()
+        
+        self.number = dictionary[Keys.Number] as? String
+        self.articleID = dictionary[Keys.ArticleID] as? String
+        self.productNumber = dictionary[Keys.ProductNumber] as? String
+        self.name = dictionary[Keys.Name] as? String
+        self.name2 = dictionary[Keys.Name2] as? String
+        self.priceVATIncluded = dictionary[Keys.PriceVATIncluded] as? String
+        self.volumeInML = dictionary[Keys.VolumeInML] as? String
+        self.pricePerLiter = dictionary[Keys.PricePerLiter] as? String
+        self.soldSince = dictionary[Keys.SoldSince] as? String
+        self.expired = dictionary[Keys.Expired] as? String
+        self.productGroup = dictionary[Keys.ProductGroup] as? String
+        self.typeDesc = dictionary[Keys.TypeDesc] as? String
+        self.style = dictionary[Keys.Style] as? String
+        self.packaging = dictionary[Keys.Packaging] as? String
+        self.seal = dictionary[Keys.Seal] as? String
+        self.origin = dictionary[Keys.Origin] as? String
+        self.originCountryName = dictionary[Keys.OriginCountryName] as? String
+        self.manufacturer = dictionary[Keys.Manufacturer] as? String
+        self.provider = dictionary[Keys.Provider] as? String
+        self.fromYear = dictionary[Keys.FromYear] as? String
+        self.sampledYear = dictionary[Keys.SampledYear] as? String
+        self.alchoholLevel = dictionary[Keys.AlchoholLevel] as? String
+        self.supply = dictionary[Keys.Supply] as? String
+        self.supplyText = dictionary[Keys.SupplyText] as? String
+        self.ecological = dictionary[Keys.Ecological] as? String
+        self.koscher = dictionary[Keys.Koscher] as? String
+        self.rawIngredientsDescription = dictionary[Keys.RawIngredientsDescription] as? String
+        
+        self.lastUpdatedDate = Date()
+    }
 }
