@@ -36,7 +36,6 @@ class ViewController: UIViewController {
         
         configure()
         
-        // Test Run
         getAllProducts()
     }
     
@@ -47,14 +46,11 @@ class ViewController: UIViewController {
         
         if segue.identifier == "DetailView" {
             
-            if let indexPathRow = self.tableView.indexPathForSelectedRow?.row {
-                
-                if let product = self.sharedClient.products?[indexPathRow] {
-                    
+            if let indexPathRow = self.tableView.indexPathForSelectedRow?.row, let product = self.sharedClient.products?[indexPathRow] {
+
                     let detailView = segue.destination as! DetailsViewController
-                    
+                
                     detailView.product = product
-                }
             }
         }
     }
@@ -99,7 +95,6 @@ extension ViewController {
                     
                     DispatchQueue.main.async {
                         
-                        print(self.sharedClient.products?[0].number ?? "nil")
                         self.tableView.reloadData()
                         
                         // Activity End
@@ -119,10 +114,12 @@ extension ViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return self.sharedClient.products?.count ?? 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        
         return 1
     }
     
@@ -136,6 +133,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         return 70
     }
     

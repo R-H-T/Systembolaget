@@ -39,6 +39,24 @@ class DetailsViewController: UIViewController {
         
         updateUI()
     }
+    
+    
+    // MARK: - IBActions
+    
+    @IBAction func toggleLikeAction(_ sender: UIButton) {
+        
+        if let product = product {
+            
+            let sharedProducts = SystembolagetClient.shared().products
+            
+            if let _ = sharedProducts?.contains(product), let index = sharedProducts?.index(of: product), let isFavorite = sharedProducts?[index].isFavorite {
+                
+                SystembolagetClient.shared().products?[index].isFavorite = !(isFavorite)
+                
+                self.updateUI()
+            }
+        }
+    }
 }
 
 // MARK: - Methods
@@ -46,7 +64,7 @@ extension DetailsViewController {
     
     func updateUI() {
         
-        //favoriteButton.state = (product.favorite) ? .highlighted : .normal
+        favoriteButton.isSelected = (product?.isFavorite ?? false) ? true : false //
         titleLabel.text = product?.name ?? "-"
         nameLabel.text = product?.name ?? "-"
         yearLabel.text = product?.fromYear ?? "-"

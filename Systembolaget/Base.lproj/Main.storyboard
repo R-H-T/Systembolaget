@@ -272,13 +272,22 @@
                                     <constraint firstAttribute="height" constant="52" id="JyB-Zb-di1"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vp0-L0-9HT">
-                                <rect key="frame" x="295" y="90" width="70" height="58"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vp0-L0-9HT">
+                                <rect key="frame" x="295" y="87.5" width="70" height="63"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="♡">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <state key="highlighted" title="♥"/>
+                                <state key="selected" title="♥">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted" title="♥">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="toggleLikeAction:" destination="tlx-7x-6hg" eventType="touchUpInside" id="iof-rX-MGN"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.54506816650000001" green="0.76425682110000004" blue="0.21606118860000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
