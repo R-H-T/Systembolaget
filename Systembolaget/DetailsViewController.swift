@@ -47,11 +47,11 @@ class DetailsViewController: UIViewController {
         
         if let product = product {
             
-            let sharedProducts = SystembolagetClient.shared().products
+            let sharedProducts = SystembolagetProductManager.shared().products
             
             if let _ = sharedProducts?.contains(product), let index = sharedProducts?.index(of: product), let isFavorite = sharedProducts?[index].isFavorite {
                 
-                SystembolagetClient.shared().products?[index].isFavorite = !(isFavorite)
+                SystembolagetProductManager.shared().products?[index].isFavorite = !(isFavorite)
                 
                 self.updateUI()
             }

@@ -24,9 +24,9 @@ class ViewController: UIViewController {
     
     
     // MARK: Lazy Properties
-    lazy var sharedClient: SystembolagetClient = {
+    lazy var sharedManager: SystembolagetProductManager = {
         
-        return SystembolagetClient.shared()
+        return SystembolagetProductManager.shared()
     }()
     
     
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         
         if segue.identifier == "DetailView" {
             
-            if let indexPathRow = self.tableView.indexPathForSelectedRow?.row, let product = (isSearching()) ? self.filteredProducts[indexPathRow] : self.sharedClient.products?[indexPathRow] {
+            if let indexPathRow = self.tableView.indexPathForSelectedRow?.row, let product = (isSearching()) ? self.filteredProducts[indexPathRow] : self.sharedManager.products?[indexPathRow] {
                 
                 let detailView = segue.destination as! DetailsViewController
                 
@@ -85,7 +85,7 @@ extension ViewController {
         self.tableView.tableHeaderView = searchController.searchBar
         self.searchController.searchBar.barStyle = .default
         self.searchController.searchBar.backgroundColor = myGreen
-        self.searchController.searchBar.tintColor = .white
+        self.searchController.searchBar.tintColor = .black
         self.searchController.searchBar.searchBarStyle = .prominent
         self.searchController.searchBar.placeholder = "Sök product..."
         self.searchController.searchBar.barTintColor = myGreen
@@ -94,11 +94,11 @@ extension ViewController {
     
     func getAllProducts(withForce flag: Bool = false) {
         
-        if self.sharedClient.products?.count ?? 0 == 0 || flag {
+        if self.sharedManager.products?.count ?? 0 == 0 || flag {
             
             if flag {
                 // Clear any existing products before repopulating data
-                self.sharedClient.products = [Product]()
+                self.sharedManager.products = [Product]()
             }
             
             DispatchQueue.global(qos: .background).async {
@@ -106,7 +106,7 @@ extension ViewController {
                 // Activity Start
                 self.activityIndicatorView?.startAnimating()
                 
-                self.sharedClient.getProducts() {
+                self.sharedManager.getProducts() {
                     
                     DispatchQueue.main.async {
                         
@@ -135,7 +135,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             return self.filteredProducts.count
         }
         
-        return self.sharedClient.products?.count ?? 0
+        return self.sharedManager.products?.count ?? 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -183,7 +183,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             
         } else {
             
-            if let product = self.sharedClient.products?[indexPath.row] as Product? {
+            if let product = self.sharedManager.products?[indexPath.row] as Product? {
                 
                 cell.textLabel?.text = product.name ?? "N/A"
                 
@@ -197,7 +197,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: Search Controller Delegate
+// MARK: - Search Controller Delegate
 extension ViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -210,11 +210,11 @@ extension ViewController: UISearchResultsUpdating {
     
     func searchFilter(contentFor searchText: String, within scope: String = "All") {
         
-        if let products = self.sharedClient.products {
+        if let products = self.sharedManager.products {
             
             self.filteredProducts = products.filter({ (product) -> Bool in
                 
-                return product.name?.localizedLowercase == searchText.localizedLowercase
+                return product.name?.localizedCaseInsensitiveContains(searchText.localizedLowercase) ?? false && product.name?.characters.first == searchText.characters.first
             })
             
             self.tableView.reloadData()
@@ -225,3 +225,4 @@ extension ViewController: UISearchResultsUpdating {
         return self.searchController.isActive && self.searchController.searchBar.text?.isEmpty != true && self.searchController.searchBar.text != ""
     }
 }
+
