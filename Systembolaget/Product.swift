@@ -42,7 +42,7 @@ class Product: NSObject {
     var rawIngredientsDescription: String?
     
     var lastUpdatedDate = Date()
-    var favorite: Bool = false
+    var isFavorite: Bool = false
     
     struct Keys {
         
