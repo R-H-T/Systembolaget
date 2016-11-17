@@ -8,11 +8,11 @@
 
 import Foundation
 
-class Product: NSObject {
+class Product: NSObject, NSCoding {
+    
     
     // MARK: - Properties
     
-    // We'll temprorarily asume everything property to be a string to avoid confusion.
     var number: String?
     var articleID: String?
     var productNumber: String?
@@ -46,6 +46,7 @@ class Product: NSObject {
     
     struct Keys {
         
+        // Default values since 16th Nov 2016
         static let Number = "nr"
         static let ArticleID = "Artikelid"
         static let ProductNumber = "Varnummer"
@@ -104,6 +105,10 @@ class Product: NSObject {
          <Koscher>0</Koscher>
          <RavarorBeskrivning>Säd.</RavarorBeskrivning>
          */
+        
+        // NSCoding
+        static let LastUpdatedDate = "last_updated_date"
+        static let IsFavorite = "is_favorite"
     }
     
     
@@ -114,7 +119,6 @@ class Product: NSObject {
         
         // init
     }
-
     
     // Convenience initializer which takes a dictionary as its argument
     convenience init(with dictionary: [String : Any?]) {
@@ -147,7 +151,76 @@ class Product: NSObject {
         self.ecological = dictionary[Keys.Ecological] as? String ?? "N/A"
         self.koscher = dictionary[Keys.Koscher] as? String ?? "N/A"
         self.rawIngredientsDescription = dictionary[Keys.RawIngredientsDescription] as? String ?? "N/A"
-
+        
         self.lastUpdatedDate = Date()
+    }
+    
+    
+    // MARK: - NSCoding
+    
+    required init?(coder aDecoder: NSCoder) {
+        
+        self.number = aDecoder.decodeObject(forKey: Keys.Number) as? String
+        self.articleID = aDecoder.decodeObject(forKey: Keys.ArticleID) as? String
+        self.productNumber = aDecoder.decodeObject(forKey: Keys.ProductNumber) as? String
+        self.name = aDecoder.decodeObject(forKey: Keys.Name) as? String
+        self.name2 = aDecoder.decodeObject(forKey: Keys.Name2) as? String
+        self.priceVATIncluded = aDecoder.decodeObject(forKey: Keys.PriceVATIncluded) as? String
+        self.volumeInML = aDecoder.decodeObject(forKey: Keys.VolumeInML) as? String
+        self.pricePerLiter = aDecoder.decodeObject(forKey: Keys.PricePerLiter) as? String
+        self.soldSince = aDecoder.decodeObject(forKey: Keys.SoldSince) as? String
+        self.expired = aDecoder.decodeObject(forKey: Keys.Expired) as? String
+        self.productGroup = aDecoder.decodeObject(forKey: Keys.ProductGroup) as? String
+        self.typeDesc = aDecoder.decodeObject(forKey: Keys.TypeDesc) as? String
+        self.style = aDecoder.decodeObject(forKey: Keys.Style) as? String
+        self.packaging = aDecoder.decodeObject(forKey: Keys.Packaging) as? String
+        self.seal = aDecoder.decodeObject(forKey: Keys.Seal) as? String
+        self.origin = aDecoder.decodeObject(forKey: Keys.Origin) as? String
+        self.originCountryName = aDecoder.decodeObject(forKey: Keys.OriginCountryName) as? String
+        self.manufacturer = aDecoder.decodeObject(forKey: Keys.Manufacturer) as? String
+        self.provider = aDecoder.decodeObject(forKey: Keys.Provider) as? String
+        self.fromYear = aDecoder.decodeObject(forKey: Keys.FromYear) as? String
+        self.sampledYear = aDecoder.decodeObject(forKey: Keys.SampledYear) as? String
+        self.alchoholLevel = aDecoder.decodeObject(forKey: Keys.AlchoholLevel) as? String
+        self.supply = aDecoder.decodeObject(forKey: Keys.Supply) as? String
+        self.supplyText = aDecoder.decodeObject(forKey: Keys.SupplyText) as? String
+        self.ecological = aDecoder.decodeObject(forKey: Keys.Ecological) as? String
+        self.koscher = aDecoder.decodeObject(forKey: Keys.Koscher) as? String
+        self.rawIngredientsDescription = aDecoder.decodeObject(forKey: Keys.RawIngredientsDescription) as? String
+        self.lastUpdatedDate = aDecoder.decodeObject(forKey: Keys.LastUpdatedDate) as! Date
+        self.isFavorite = aDecoder.decodeObject(forKey: Keys.IsFavorite) as! Bool
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        
+        aCoder.encode(self.number, forKey: Keys.Number)
+        aCoder.encode(self.articleID, forKey: Keys.ArticleID)
+        aCoder.encode(self.productNumber, forKey: Keys.ProductNumber)
+        aCoder.encode(self.name, forKey: Keys.Name)
+        aCoder.encode(self.name2, forKey: Keys.Name2)
+        aCoder.encode(self.priceVATIncluded, forKey: Keys.PriceVATIncluded)
+        aCoder.encode(self.volumeInML, forKey: Keys.VolumeInML)
+        aCoder.encode(self.pricePerLiter, forKey: Keys.PricePerLiter)
+        aCoder.encode(self.soldSince, forKey: Keys.SoldSince)
+        aCoder.encode(self.expired, forKey: Keys.Expired)
+        aCoder.encode(self.productGroup, forKey: Keys.ProductGroup)
+        aCoder.encode(self.typeDesc, forKey: Keys.TypeDesc)
+        aCoder.encode(self.style, forKey: Keys.Style)
+        aCoder.encode(self.packaging, forKey: Keys.Packaging)
+        aCoder.encode(self.seal, forKey: Keys.Seal)
+        aCoder.encode(self.origin, forKey: Keys.Origin)
+        aCoder.encode(self.originCountryName, forKey: Keys.OriginCountryName)
+        aCoder.encode(self.manufacturer, forKey: Keys.Manufacturer)
+        aCoder.encode(self.provider, forKey: Keys.Provider)
+        aCoder.encode(self.fromYear, forKey: Keys.FromYear)
+        aCoder.encode(self.sampledYear, forKey: Keys.SampledYear)
+        aCoder.encode(self.alchoholLevel, forKey: Keys.AlchoholLevel)
+        aCoder.encode(self.supply, forKey: Keys.Supply)
+        aCoder.encode(self.supplyText, forKey: Keys.SupplyText)
+        aCoder.encode(self.ecological, forKey: Keys.Ecological)
+        aCoder.encode(self.koscher, forKey: Keys.Koscher)
+        aCoder.encode(self.rawIngredientsDescription, forKey: Keys.RawIngredientsDescription)
+        aCoder.encode(self.lastUpdatedDate, forKey: Keys.LastUpdatedDate)
+        aCoder.encode(self.isFavorite, forKey: Keys.IsFavorite)
     }
 }
