@@ -64,12 +64,12 @@ extension DetailsViewController {
     
     func updateUI() {
         
-        favoriteButton.isSelected = (product?.isFavorite ?? false) ? true : false //
+        favoriteButton.isSelected = (product?.isFavorite ?? false) ? true : false
         titleLabel.text = product?.name ?? "-"
         nameLabel.text = product?.name ?? "-"
-        yearLabel.text = product?.fromYear ?? "-"
-        priceLabel.text = product?.priceVATIncluded ?? "-"
-        manufactureLabel.text = product?.manufacturer ?? "-"
+        yearLabel.text = (product?.fromYear != "N/A") ? (product?.fromYear ?? "-") : "-"
+        priceLabel.text = (product?.priceVATIncluded != "N/A") ? (product?.priceVATIncluded ?? "-") : "-"
+        manufactureLabel.text = (product?.manufacturer != "N/A") ? (product?.manufacturer ?? "-") : "-"
         ecoLabel.text = (product?.ecological == "1") ? "Ja" : "Nej"
     }
 }
