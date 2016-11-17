@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
     
     
@@ -198,7 +199,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 // MARK: - Search Controller Delegate
-extension ViewController: UISearchResultsUpdating {
+extension ViewController: UISearchResultsUpdating, UISearchBarDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
         
@@ -221,8 +222,13 @@ extension ViewController: UISearchResultsUpdating {
         }
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.text = ""
+    }
+    
     func isSearching() -> Bool {
-        return self.searchController.isActive && self.searchController.searchBar.text?.isEmpty != true && self.searchController.searchBar.text != "" || self.searchController.searchBar.text?.characters.count != 0
+        return self.searchController.searchBar.text?.characters.count != 0
     }
 }
 
