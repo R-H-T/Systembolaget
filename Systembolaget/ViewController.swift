@@ -15,7 +15,8 @@ class ViewController: UIViewController {
     
     var lastSelectedIndexPath: IndexPath? = nil
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
-    
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredProducts = [Product]()
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -46,11 +47,11 @@ class ViewController: UIViewController {
         
         if segue.identifier == "DetailView" {
             
-            if let indexPathRow = self.tableView.indexPathForSelectedRow?.row, let product = self.sharedClient.products?[indexPathRow] {
-
-                    let detailView = segue.destination as! DetailsViewController
+            if let indexPathRow = self.tableView.indexPathForSelectedRow?.row, let product = (isSearching()) ? self.filteredProducts[indexPathRow] : self.sharedClient.products?[indexPathRow] {
                 
-                    detailView.product = product
+                let detailView = segue.destination as! DetailsViewController
+                
+                detailView.product = product
             }
         }
     }
@@ -69,12 +70,26 @@ extension ViewController {
     
     func configure() {
         
+        let myGreen = UIColor(red: 60/255, green: 160/255, blue: 30/255, alpha: 1.0)
+        
         // Configure a Beautiful Table View
         self.tableView.delegate = self
         self.tableView.layer.cornerRadius = 10
         self.tableView.layer.masksToBounds = true
-        self.tableView.layer.borderColor = UIColor(red: 60/255, green: 160/255, blue: 30/255, alpha: 1.0).cgColor
+        self.tableView.layer.borderColor = myGreen.cgColor
         self.tableView.layer.borderWidth = 3
+        
+        // Setup the Search Controller
+        self.searchController.dimsBackgroundDuringPresentation = false
+        self.searchController.searchResultsUpdater = self
+        self.tableView.tableHeaderView = searchController.searchBar
+        self.searchController.searchBar.barStyle = .default
+        self.searchController.searchBar.backgroundColor = myGreen
+        self.searchController.searchBar.tintColor = .white
+        self.searchController.searchBar.searchBarStyle = .prominent
+        self.searchController.searchBar.placeholder = "Sök product..."
+        self.searchController.searchBar.barTintColor = myGreen
+        self.definesPresentationContext = true
     }
     
     func getAllProducts(withForce flag: Bool = false) {
@@ -115,6 +130,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        if self.isSearching() {
+            
+            return self.filteredProducts.count
+        }
+        
         return self.sharedClient.products?.count ?? 0
     }
     
@@ -150,15 +170,58 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     // Configure Cell
     func configure(_ cell: UITableViewCell, at indexPath: IndexPath) {
         
-        if let product = self.sharedClient.products?[indexPath.row] as Product? {
+        if self.isSearching() {
             
-            cell.textLabel?.text = product.name ?? "N/A"
+            if let product = self.filteredProducts[indexPath.row] as Product? {
+                
+                cell.textLabel?.text = product.name ?? "N/A"
+                
+            } else {
+                
+                cell.textLabel?.text = "N/A"
+            }
             
         } else {
             
-            cell.textLabel?.text = "N/A"
+            if let product = self.sharedClient.products?[indexPath.row] as Product? {
+                
+                cell.textLabel?.text = product.name ?? "N/A"
+                
+            } else {
+                
+                cell.textLabel?.text = "N/A"
+            }
         }
         
         cell.textLabel?.font = UIFont(name: "Avenir-Heavy", size: 22)
+    }
+}
+
+// MARK: Search Controller Delegate
+extension ViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        if let searchText = searchController.searchBar.text {
+            
+            searchFilter(contentFor: searchText)
+        }
+    }
+    
+    func searchFilter(contentFor searchText: String, within scope: String = "All") {
+        
+        if let products = self.sharedClient.products {
+            
+            self.filteredProducts = products.filter({ (product) -> Bool in
+                
+                return product.name?.localizedLowercase == searchText.localizedLowercase
+            })
+            
+            self.tableView.reloadData()
+        }
+    }
+    
+    func isSearching() -> Bool {
+        return self.searchController.isActive && self.searchController.searchBar.text?.isEmpty != true && self.searchController.searchBar.text != ""
     }
 }

@@ -66,8 +66,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="RDp-U0-VOa"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Ps3-bK-22P"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="O4D-BS-biA"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="APa-2N-SbU"/>
                                 </connections>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="86L-1v-9WV">
@@ -91,7 +91,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="activityIndicatorView" destination="86L-1v-9WV" id="JTg-j8-k4a"/>
-                        <outlet property="tableView" destination="Sdj-Wc-dgi" id="NGH-75-bLL"/>
+                        <outlet property="tableView" destination="Sdj-Wc-dgi" id="i32-ug-u1a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
