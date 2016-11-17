@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         
         getAllProducts()
     }
-    
+
     
     // MARK: Navigation
     
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         
         if segue.identifier == "DetailView" {
             
-            if let indexPathRow = self.tableView.indexPathForSelectedRow?.row, let product = (isSearching()) ? self.filteredProducts[indexPathRow] : self.sharedManager.products?[indexPathRow] {
+            if let indexPathRow = self.tableView.indexPathForSelectedRow?.row, let product = (self.isSearching()) ? self.filteredProducts[indexPathRow] : self.sharedManager.products?[indexPathRow] {
                 
                 let detailView = segue.destination as! DetailsViewController
                 
@@ -222,7 +222,7 @@ extension ViewController: UISearchResultsUpdating {
     }
     
     func isSearching() -> Bool {
-        return self.searchController.isActive && self.searchController.searchBar.text?.isEmpty != true && self.searchController.searchBar.text != ""
+        return self.searchController.isActive && self.searchController.searchBar.text?.isEmpty != true && self.searchController.searchBar.text != "" || self.searchController.searchBar.text?.characters.count != 0
     }
 }
 
