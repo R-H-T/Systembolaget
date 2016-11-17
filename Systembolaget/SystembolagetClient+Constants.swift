@@ -10,6 +10,8 @@ import Foundation
 
 struct Constants {
     
-    // API
+    // MARK: - API
+    // Default values since 16th Nov 2016
     static let SAFE_URL = "https://www.systembolaget.se/api/assortment/products/xml"
+    static let ProductsNameKey = "artikel"
 }

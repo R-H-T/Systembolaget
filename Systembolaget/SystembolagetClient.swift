@@ -12,31 +12,16 @@ typealias CompletionHandler = ((_ success: [Product]?, _ error: NSError?)->())
 
 class SystembolagetClient: NSObject {
     
-    // MARK: - Properties
-    
-    var products: [Product]? = [Product]()
-    
     
     // MARK: - Methods
     
-    func getProducts(completion: (()->())? = nil) {
+    func getProducts(with completion: @escaping CompletionHandler) {
         
-        _getProducts { (data, error) in
-            
-            if error != nil {
-                
-                print(error?.localizedDescription ?? "Error unknown.")
-                completion?()
-                return
-            }
-            
-            self.products = data
-            completion?()
-        }
+        _getProducts(with: completion)
     }
     
     /// Return a list of products with a completion handler (Private)
-    fileprivate func _getProducts(completion: @escaping CompletionHandler) {
+    fileprivate func _getProducts(with completion: @escaping CompletionHandler) {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
@@ -84,7 +69,7 @@ class SystembolagetClient: NSObject {
                     
                     document = try SMXMLDocument(data: data)
                     
-                    if let products = document?.childrenNamed("artikel") {
+                    if let products = document?.childrenNamed(Constants.ProductsNameKey) {
                         
                         var productDict: [String : Any]? = [:]
                         var newProducts: [Product] = [Product]()
