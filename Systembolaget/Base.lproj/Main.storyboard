@@ -61,7 +61,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="tlx-7x-6hg" kind="show" id="gd5-un-XnX"/>
+                                            <segue destination="tlx-7x-6hg" kind="show" identifier="DetailView" id="gd5-un-XnX"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -312,7 +312,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JqH-7F-LCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="7nz-P0-aOp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="796" y="131.78410794602701"/>
+            <point key="canvasLocation" x="967" y="133"/>
         </scene>
     </scenes>
 </document>

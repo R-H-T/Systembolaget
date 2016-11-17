@@ -39,6 +39,32 @@ class ViewController: UIViewController {
         // Test Run
         getAllProducts()
     }
+    
+    
+    // MARK: Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "DetailView" {
+            
+            if let indexPathRow = self.tableView.indexPathForSelectedRow?.row {
+                
+                if let product = self.sharedClient.products?[indexPathRow] {
+                    
+                    let detailView = segue.destination as! DetailsViewController
+                    
+                    detailView.product = product
+                }
+            }
+        }
+    }
+    
+    
+    // MARK: - IBActions
+    
+    @IBAction func backToMain(_ segue: UIStoryboardSegue) {
+        // Unwind segue
+    }
 }
 
 
@@ -111,6 +137,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        self.lastSelectedIndexPath = indexPath
+    }
+    
+    func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+        
+        return true
     }
     
     // Configure Cell
