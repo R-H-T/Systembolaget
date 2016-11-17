@@ -28,6 +28,7 @@
 		C6748E8D1DDCB478007DABF7 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C6748E861DDCB478007DABF7 /* AFURLResponseSerialization.m */; };
 		C6748E8E1DDCB478007DABF7 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C6748E881DDCB478007DABF7 /* AFURLSessionManager.m */; };
 		C6748E901DDCBD4E007DABF7 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6748E8F1DDCBD4E007DABF7 /* Product.swift */; };
+		C6CE2F871DDE09D8002587B8 /* SystembolagetProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CE2F861DDE09D8002587B8 /* SystembolagetProductManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		C6748E871DDCB478007DABF7 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		C6748E881DDCB478007DABF7 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		C6748E8F1DDCBD4E007DABF7 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		C6CE2F861DDE09D8002587B8 /* SystembolagetProductManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystembolagetProductManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				C6748E4A1DDC99D4007DABF7 /* Client */,
+				C6CE2F851DDE09A1002587B8 /* Manager */,
 				C6748E8F1DDCBD4E007DABF7 /* Product.swift */,
 			);
 			name = Model;
@@ -265,6 +268,14 @@
 				C6748E881DDCB478007DABF7 /* AFURLSessionManager.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		C6CE2F851DDE09A1002587B8 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				C6CE2F861DDE09D8002587B8 /* SystembolagetProductManager.swift */,
+			);
+			name = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -403,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6748E141DDC98B4007DABF7 /* ViewController.swift in Sources */,
+				C6CE2F871DDE09D8002587B8 /* SystembolagetProductManager.swift in Sources */,
 				C6748E8A1DDCB478007DABF7 /* AFNetworkReachabilityManager.m in Sources */,
 				C6748E681DDCAF18007DABF7 /* SMXMLDocumentResponseSerializer.m in Sources */,
 				C6748E121DDC98B4007DABF7 /* AppDelegate.swift in Sources */,
