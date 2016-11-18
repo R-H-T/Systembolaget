@@ -40,9 +40,9 @@ class ViewController: UIViewController {
         
         getAllProducts()
     }
-
     
-    // MARK: Navigation
+    
+    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -86,7 +86,7 @@ extension ViewController {
         self.tableView.tableHeaderView = searchController.searchBar
         self.searchController.searchBar.barStyle = .default
         self.searchController.searchBar.backgroundColor = myGreen
-        self.searchController.searchBar.tintColor = .black
+        self.searchController.searchBar.tintColor = .white
         self.searchController.searchBar.searchBarStyle = .prominent
         self.searchController.searchBar.placeholder = "Sök product..."
         self.searchController.searchBar.barTintColor = myGreen
@@ -228,7 +228,7 @@ extension ViewController: UISearchResultsUpdating, UISearchBarDelegate {
     }
     
     func isSearching() -> Bool {
+        
         return self.searchController.searchBar.text?.characters.count != 0
     }
 }
-

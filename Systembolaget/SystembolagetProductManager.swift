@@ -14,7 +14,9 @@ fileprivate let _fileURL: URL = _documentsDirectoryURL.appendingPathComponent("S
 
 class SystembolagetProductManager: NSObject {
     
+    
     // MARK - Properties
+    
     var products: [Product]? = [Product]()
     
     
@@ -29,27 +31,45 @@ class SystembolagetProductManager: NSObject {
     
     func getProducts(completion: (()->())? = nil) {
         
+        // If products exists in store, we'll reuse that data
+        if let products = SystembolagetProductManager.unarchiveProducts(), self.products?.count ?? 0 == 0 {
+            
+            self.products = products
+            
+            completion?()
+            
+            return
+        }
+        
+        // Fetch fresh data
         SystembolagetClient.shared().getProducts { (data, error) in
+            
+            // Remove any products in our collection to avoid duplicates (Add more logic to preserve favorites, if necessary)
+            self.products = []
             
             if error != nil {
                 
                 print(error?.localizedDescription ?? "Error unknown.")
+                
                 completion?()
+                
                 return
             }
             
+            // Populate the products array
             self.products = data
+            
+            // Persist fetched products
+            self.save()
+            
             completion?()
         }
     }
     
     func save() {
         
+        // If nothing exists, we'll do nothing
         guard let products = self.products else {
-            
-            // Store an empty object instead
-            NSKeyedArchiver.archiveRootObject([], toFile: _fileURL.path)
-        
             return
         }
         

@@ -15,6 +15,18 @@ class DetailsViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
+    var indexOfProduct: Int? {
+        
+        if let product = self.product {
+            
+            return SystembolagetProductManager.shared().products?.index(of: product)
+            
+        } else {
+            
+            return nil
+        }
+    }
+    
     // MARK: IBOutlets
     
     @IBOutlet weak var favoriteButton: UIButton!
@@ -45,15 +57,29 @@ class DetailsViewController: UIViewController {
     
     @IBAction func toggleLikeAction(_ sender: UIButton) {
         
-        if let product = product {
+        if let product = self.product {
             
-            let sharedProducts = SystembolagetProductManager.shared().products
+            self.product?.isFavorite = !(product.isFavorite)
             
-            if let _ = sharedProducts?.contains(product), let index = sharedProducts?.index(of: product), let isFavorite = sharedProducts?[index].isFavorite {
+            // Update the UI first, thus giving the user instant visual feedback before we actually do the real magic behind the scenes
+            self.updateUI()
+            
+            DispatchQueue.global(qos: .userInitiated).async {
                 
-                SystembolagetProductManager.shared().products?[index].isFavorite = !(isFavorite)
-                
-                self.updateUI()
+                if let index = self.indexOfProduct, let updatedProduct = self.product {
+                    
+                    // Replace the outdated product with the new one
+                    SystembolagetProductManager.shared().products?[index] = updatedProduct
+                    
+                    // Persist any changes
+                    SystembolagetProductManager.shared().save()
+                    
+                    DispatchQueue.main.async {
+                        
+                        // Update UI a second time
+                        self.updateUI()
+                    }
+                }
             }
         }
     }
