@@ -44,6 +44,7 @@ class Product: NSObject, NSCoding {
     var lastUpdatedDate = Date()
     var isFavorite: Bool = false
     
+    // MARK: Keys
     struct Keys {
         
         // Default values since 16th Nov 2016
@@ -105,12 +106,41 @@ class Product: NSObject, NSCoding {
          <Koscher>0</Koscher>
          <RavarorBeskrivning>Säd.</RavarorBeskrivning>
          */
-        
-        // NSCoding
-        static let LastUpdatedDate = "last_updated_date"
-        static let IsFavorite = "is_favorite"
     }
     
+    // MARK: NSCoding Keys
+    enum NSCodingKeys: String {
+        
+        case lastUpdatedDate
+        case isFavorite
+        case number
+        case articleID
+        case productNumber
+        case name
+        case name2
+        case priceVATIncluded
+        case volumeInML
+        case pricePerLiter
+        case soldSince
+        case expired
+        case productGroup
+        case typeDesc
+        case style
+        case packaging
+        case seal
+        case origin
+        case originCountryName
+        case manufacturer
+        case provider
+        case fromYear
+        case sampledYear
+        case alchoholLevel
+        case supply
+        case supplyText
+        case ecological
+        case koscher
+        case rawIngredientsDescription
+    }
     
     // MARK: - Initializers
     
@@ -160,67 +190,66 @@ class Product: NSObject, NSCoding {
     
     required init?(coder aDecoder: NSCoder) {
         
-        self.number = aDecoder.decodeObject(forKey: Keys.Number) as? String
-        self.articleID = aDecoder.decodeObject(forKey: Keys.ArticleID) as? String
-        self.productNumber = aDecoder.decodeObject(forKey: Keys.ProductNumber) as? String
-        self.name = aDecoder.decodeObject(forKey: Keys.Name) as? String
-        self.name2 = aDecoder.decodeObject(forKey: Keys.Name2) as? String
-        self.priceVATIncluded = aDecoder.decodeObject(forKey: Keys.PriceVATIncluded) as? String
-        self.volumeInML = aDecoder.decodeObject(forKey: Keys.VolumeInML) as? String
-        self.pricePerLiter = aDecoder.decodeObject(forKey: Keys.PricePerLiter) as? String
-        self.soldSince = aDecoder.decodeObject(forKey: Keys.SoldSince) as? String
-        self.expired = aDecoder.decodeObject(forKey: Keys.Expired) as? String
-        self.productGroup = aDecoder.decodeObject(forKey: Keys.ProductGroup) as? String
-        self.typeDesc = aDecoder.decodeObject(forKey: Keys.TypeDesc) as? String
-        self.style = aDecoder.decodeObject(forKey: Keys.Style) as? String
-        self.packaging = aDecoder.decodeObject(forKey: Keys.Packaging) as? String
-        self.seal = aDecoder.decodeObject(forKey: Keys.Seal) as? String
-        self.origin = aDecoder.decodeObject(forKey: Keys.Origin) as? String
-        self.originCountryName = aDecoder.decodeObject(forKey: Keys.OriginCountryName) as? String
-        self.manufacturer = aDecoder.decodeObject(forKey: Keys.Manufacturer) as? String
-        self.provider = aDecoder.decodeObject(forKey: Keys.Provider) as? String
-        self.fromYear = aDecoder.decodeObject(forKey: Keys.FromYear) as? String
-        self.sampledYear = aDecoder.decodeObject(forKey: Keys.SampledYear) as? String
-        self.alchoholLevel = aDecoder.decodeObject(forKey: Keys.AlchoholLevel) as? String
-        self.supply = aDecoder.decodeObject(forKey: Keys.Supply) as? String
-        self.supplyText = aDecoder.decodeObject(forKey: Keys.SupplyText) as? String
-        self.ecological = aDecoder.decodeObject(forKey: Keys.Ecological) as? String
-        self.koscher = aDecoder.decodeObject(forKey: Keys.Koscher) as? String
-        self.rawIngredientsDescription = aDecoder.decodeObject(forKey: Keys.RawIngredientsDescription) as? String
-        self.lastUpdatedDate = aDecoder.decodeObject(forKey: Keys.LastUpdatedDate) as! Date
-        self.isFavorite = aDecoder.decodeObject(forKey: Keys.IsFavorite) as! Bool
+        self.number = aDecoder.decodeObject(forKey: NSCodingKeys.number.rawValue) as? String
+        self.articleID = aDecoder.decodeObject(forKey: NSCodingKeys.articleID.rawValue) as? String
+        self.productNumber = aDecoder.decodeObject(forKey: NSCodingKeys.productNumber.rawValue) as? String
+        self.name = aDecoder.decodeObject(forKey: NSCodingKeys.name.rawValue) as? String
+        self.name2 = aDecoder.decodeObject(forKey: NSCodingKeys.name2.rawValue) as? String
+        self.priceVATIncluded = aDecoder.decodeObject(forKey: NSCodingKeys.priceVATIncluded.rawValue) as? String
+        self.volumeInML = aDecoder.decodeObject(forKey: NSCodingKeys.volumeInML.rawValue) as? String
+        self.pricePerLiter = aDecoder.decodeObject(forKey: NSCodingKeys.pricePerLiter.rawValue) as? String
+        self.soldSince = aDecoder.decodeObject(forKey: NSCodingKeys.soldSince.rawValue) as? String
+        self.expired = aDecoder.decodeObject(forKey: NSCodingKeys.expired.rawValue) as? String
+        self.productGroup = aDecoder.decodeObject(forKey: NSCodingKeys.productGroup.rawValue) as? String
+        self.typeDesc = aDecoder.decodeObject(forKey: NSCodingKeys.typeDesc.rawValue) as? String
+        self.style = aDecoder.decodeObject(forKey: NSCodingKeys.style.rawValue) as? String
+        self.packaging = aDecoder.decodeObject(forKey: NSCodingKeys.packaging.rawValue) as? String
+        self.seal = aDecoder.decodeObject(forKey: NSCodingKeys.seal.rawValue) as? String
+        self.origin = aDecoder.decodeObject(forKey: NSCodingKeys.origin.rawValue) as? String
+        self.originCountryName = aDecoder.decodeObject(forKey: NSCodingKeys.originCountryName.rawValue) as? String
+        self.manufacturer = aDecoder.decodeObject(forKey: NSCodingKeys.manufacturer.rawValue) as? String
+        self.provider = aDecoder.decodeObject(forKey: NSCodingKeys.provider.rawValue) as? String
+        self.fromYear = aDecoder.decodeObject(forKey: NSCodingKeys.fromYear.rawValue) as? String
+        self.sampledYear = aDecoder.decodeObject(forKey: NSCodingKeys.sampledYear.rawValue) as? String
+        self.alchoholLevel = aDecoder.decodeObject(forKey: NSCodingKeys.alchoholLevel.rawValue) as? String
+        self.supply = aDecoder.decodeObject(forKey: NSCodingKeys.supply.rawValue) as? String
+        self.supplyText = aDecoder.decodeObject(forKey: NSCodingKeys.supplyText.rawValue) as? String
+        self.ecological = aDecoder.decodeObject(forKey: NSCodingKeys.ecological.rawValue) as? String
+        self.koscher = aDecoder.decodeObject(forKey: NSCodingKeys.koscher.rawValue) as? String
+        self.rawIngredientsDescription = aDecoder.decodeObject(forKey: NSCodingKeys.rawIngredientsDescription.rawValue) as? String
+        self.isFavorite = (aDecoder.decodeObject(forKey: NSCodingKeys.isFavorite.rawValue) as? NSNumber)?.boolValue ?? false
     }
     
     func encode(with aCoder: NSCoder) {
         
-        aCoder.encode(self.number, forKey: Keys.Number)
-        aCoder.encode(self.articleID, forKey: Keys.ArticleID)
-        aCoder.encode(self.productNumber, forKey: Keys.ProductNumber)
-        aCoder.encode(self.name, forKey: Keys.Name)
-        aCoder.encode(self.name2, forKey: Keys.Name2)
-        aCoder.encode(self.priceVATIncluded, forKey: Keys.PriceVATIncluded)
-        aCoder.encode(self.volumeInML, forKey: Keys.VolumeInML)
-        aCoder.encode(self.pricePerLiter, forKey: Keys.PricePerLiter)
-        aCoder.encode(self.soldSince, forKey: Keys.SoldSince)
-        aCoder.encode(self.expired, forKey: Keys.Expired)
-        aCoder.encode(self.productGroup, forKey: Keys.ProductGroup)
-        aCoder.encode(self.typeDesc, forKey: Keys.TypeDesc)
-        aCoder.encode(self.style, forKey: Keys.Style)
-        aCoder.encode(self.packaging, forKey: Keys.Packaging)
-        aCoder.encode(self.seal, forKey: Keys.Seal)
-        aCoder.encode(self.origin, forKey: Keys.Origin)
-        aCoder.encode(self.originCountryName, forKey: Keys.OriginCountryName)
-        aCoder.encode(self.manufacturer, forKey: Keys.Manufacturer)
-        aCoder.encode(self.provider, forKey: Keys.Provider)
-        aCoder.encode(self.fromYear, forKey: Keys.FromYear)
-        aCoder.encode(self.sampledYear, forKey: Keys.SampledYear)
-        aCoder.encode(self.alchoholLevel, forKey: Keys.AlchoholLevel)
-        aCoder.encode(self.supply, forKey: Keys.Supply)
-        aCoder.encode(self.supplyText, forKey: Keys.SupplyText)
-        aCoder.encode(self.ecological, forKey: Keys.Ecological)
-        aCoder.encode(self.koscher, forKey: Keys.Koscher)
-        aCoder.encode(self.rawIngredientsDescription, forKey: Keys.RawIngredientsDescription)
-        aCoder.encode(self.lastUpdatedDate, forKey: Keys.LastUpdatedDate)
-        aCoder.encode(self.isFavorite, forKey: Keys.IsFavorite)
+        aCoder.encode(self.number, forKey: NSCodingKeys.number.rawValue)
+        aCoder.encode(self.articleID, forKey: NSCodingKeys.articleID.rawValue)
+        aCoder.encode(self.productNumber, forKey: NSCodingKeys.productNumber.rawValue)
+        aCoder.encode(self.name, forKey: NSCodingKeys.name.rawValue)
+        aCoder.encode(self.name2, forKey: NSCodingKeys.name2.rawValue)
+        aCoder.encode(self.priceVATIncluded, forKey: NSCodingKeys.priceVATIncluded.rawValue)
+        aCoder.encode(self.volumeInML, forKey: NSCodingKeys.volumeInML.rawValue)
+        aCoder.encode(self.pricePerLiter, forKey: NSCodingKeys.pricePerLiter.rawValue)
+        aCoder.encode(self.soldSince, forKey: NSCodingKeys.soldSince.rawValue)
+        aCoder.encode(self.expired, forKey: NSCodingKeys.expired.rawValue)
+        aCoder.encode(self.productGroup, forKey: NSCodingKeys.productGroup.rawValue)
+        aCoder.encode(self.typeDesc, forKey: NSCodingKeys.typeDesc.rawValue)
+        aCoder.encode(self.style, forKey: NSCodingKeys.style.rawValue)
+        aCoder.encode(self.packaging, forKey: NSCodingKeys.packaging.rawValue)
+        aCoder.encode(self.seal, forKey: NSCodingKeys.seal.rawValue)
+        aCoder.encode(self.origin, forKey: NSCodingKeys.origin.rawValue)
+        aCoder.encode(self.originCountryName, forKey: NSCodingKeys.originCountryName.rawValue)
+        aCoder.encode(self.manufacturer, forKey: NSCodingKeys.manufacturer.rawValue)
+        aCoder.encode(self.provider, forKey: NSCodingKeys.provider.rawValue)
+        aCoder.encode(self.fromYear, forKey: NSCodingKeys.fromYear.rawValue)
+        aCoder.encode(self.sampledYear, forKey: NSCodingKeys.sampledYear.rawValue)
+        aCoder.encode(self.alchoholLevel, forKey: NSCodingKeys.alchoholLevel.rawValue)
+        aCoder.encode(self.supply, forKey: NSCodingKeys.supply.rawValue)
+        aCoder.encode(self.supplyText, forKey: NSCodingKeys.supplyText.rawValue)
+        aCoder.encode(self.ecological, forKey: NSCodingKeys.ecological.rawValue)
+        aCoder.encode(self.koscher, forKey: NSCodingKeys.koscher.rawValue)
+        aCoder.encode(self.rawIngredientsDescription, forKey: NSCodingKeys.rawIngredientsDescription.rawValue)
+        aCoder.encode(self.lastUpdatedDate, forKey: NSCodingKeys.lastUpdatedDate.rawValue)
+        aCoder.encode(NSNumber(value: self.isFavorite), forKey: NSCodingKeys.isFavorite.rawValue)
     }
 }
