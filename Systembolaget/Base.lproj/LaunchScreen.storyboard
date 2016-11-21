@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Systembolaget" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCr-Cn-rip">
-                                <rect key="frame" x="77" y="206" width="220.5" height="39.5"/>
+                                <rect key="frame" x="77" y="206" width="221" height="39"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Heavy" family="Avenir Next" pointSize="28"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -32,7 +32,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="DCr-Cn-rip" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-108" id="YxB-QA-ASs"/>
+                            <constraint firstItem="DCr-Cn-rip" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-108" id="YxB-QA-ASs">
+                                <variation key="heightClass=compact-widthClass=compact" constant="-50"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="-30"/>
+                            </constraint>
                             <constraint firstItem="DCr-Cn-rip" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="yx3-J6-mph"/>
                         </constraints>
                     </view>

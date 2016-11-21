@@ -15,14 +15,17 @@ class ViewController: UIViewController {
     // MARK: - Properties
     
     var lastSelectedIndexPath: IndexPath? = nil
-    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
-    let searchController = UISearchController(searchResultsController: nil)
     var filteredProducts = [Product]()
+    let searchController = UISearchController(searchResultsController: nil)
+    var restoredState = SearchControllerRestorableState()
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
-    
+    @IBOutlet weak var searchTopLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchBottomLayoutConstraint: NSLayoutConstraint!
     
     // MARK: Lazy Properties
     lazy var sharedManager: SystembolagetProductManager = {
@@ -38,25 +41,28 @@ class ViewController: UIViewController {
         
         configure()
         
+        // Listen for change of download state
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.handleSystembolagetProductManagerStateChange(notification:)), name: Notification.Name.SystembolagetProductManagerChangedState, object: nil)
+        
         getAllProducts()
     }
     
-    
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        if segue.identifier == "DetailView" {
+        // Restore the searchController's active state.
+        if restoredState.wasActive {
             
-            if let indexPathRow = self.tableView.indexPathForSelectedRow?.row, let product = (self.isSearching()) ? self.filteredProducts[indexPathRow] : self.sharedManager.products?[indexPathRow] {
+            searchController.isActive = restoredState.wasActive
+            restoredState.wasActive = false
+            
+            if restoredState.wasFirstResponder {
                 
-                let detailView = segue.destination as! DetailsViewController
-                
-                detailView.product = product
+                searchController.searchBar.becomeFirstResponder()
+                restoredState.wasFirstResponder = false
             }
         }
     }
-    
     
     // MARK: - IBActions
     
@@ -83,14 +89,42 @@ extension ViewController {
         // Setup the Search Controller
         self.searchController.dimsBackgroundDuringPresentation = false
         self.searchController.searchResultsUpdater = self
+        self.searchController.delegate = self
+        self.searchController.searchBar.delegate = self
+        self.searchController.searchBar.sizeToFit()
         self.tableView.tableHeaderView = searchController.searchBar
         self.searchController.searchBar.barStyle = .default
         self.searchController.searchBar.backgroundColor = myGreen
         self.searchController.searchBar.tintColor = .white
-        self.searchController.searchBar.searchBarStyle = .prominent
+        self.searchController.searchBar.searchBarStyle = .default
         self.searchController.searchBar.placeholder = "Sök product..."
         self.searchController.searchBar.barTintColor = myGreen
         self.definesPresentationContext = true
+    }
+    
+    func handleSystembolagetProductManagerStateChange(notification: Notification) {
+        
+        switch(self.sharedManager.downloadState) {
+            
+        case .active:
+            
+            print("Downloading new data...")
+            
+            DispatchQueue.main.async {
+                
+                self.activityIndicatorView.startAnimating()
+            }
+            
+        case .idle:
+            
+            print("Download complete.")
+            
+            DispatchQueue.main.async {
+                
+                self.activityIndicatorView.stopAnimating()
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func getAllProducts(withForce flag: Bool = false) {
@@ -100,6 +134,11 @@ extension ViewController {
             if flag {
                 // Clear any existing products before repopulating data
                 self.sharedManager.products = [Product]()
+            }
+            
+            guard self.sharedManager.downloadState != .idle else {
+                
+                return
             }
             
             DispatchQueue.global(qos: .background).async {
@@ -161,6 +200,18 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         self.lastSelectedIndexPath = indexPath
+        
+        // Coded segue
+        if let product = (self.isSearching()) ? self.filteredProducts[indexPath.row] : self.sharedManager.products?[indexPath.row] {
+            
+            let detailViewController = DetailViewController.detailViewControllerForProduct(product: product)
+            detailViewController.navigationItem.setLeftBarButton(UIBarButtonItem(customView: detailViewController.customBackButton), animated: true)
+            detailViewController.navigationItem.titleView = detailViewController.customTitleButton
+            detailViewController.navigationItem.setRightBarButton(UIBarButtonItem(customView: detailViewController.favoriteButton), animated: true)
+            detailViewController.navigationItem.setHidesBackButton(true, animated: false)
+            
+            self.navigationController?.pushViewController(detailViewController, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
@@ -198,8 +249,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: - Search Controller Delegate
-extension ViewController: UISearchResultsUpdating, UISearchBarDelegate {
+// MARK: - UISearchController
+extension ViewController: UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
+    
+    // MARK: Search Results Updating
     
     func updateSearchResults(for searchController: UISearchController) {
         
@@ -222,13 +275,82 @@ extension ViewController: UISearchResultsUpdating, UISearchBarDelegate {
         }
     }
     
+    
+    // MARK: Search Bar (Delegate)
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
         searchBar.text = ""
+        searchBar.resignFirstResponder()
     }
+    
+    
+    // MARK: Search Controller (Delegate)
+    // --
+    
+    // MARK: Methods
     
     func isSearching() -> Bool {
         
-        return self.searchController.searchBar.text?.characters.count != 0
+        UIView.animate(withDuration: 0.45) {
+            
+            self.searchTopLayoutConstraint?.constant = (self.searchController.isActive) ? 0 : 55
+            self.searchBottomLayoutConstraint?.constant = (self.searchController.isActive) ? 0 : 55
+        }
+        
+        return self.searchController.isActive || self.searchController.searchBar.text?.characters.count != 0
     }
+}
+
+// MARK: - UIStateRestoration
+extension ViewController {
+    
+    
+    // MARK: Types
+    
+    struct SearchControllerRestorableState {
+        
+        var wasActive = false
+        var wasFirstResponder = false
+    }
+    
+    enum RestorationKeys: String {
+        
+        case searchControllerIsActive
+        case searchBarText
+        case searchBarIsFirstResponder
+        case filteredProducts
+    }
+    
+    
+    // MARK: Decoding / Encoding Restorable State
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        super.decodeRestorableState(with: coder)
+        
+        guard let decodedFilteredProducts = coder.decodeObject(forKey: RestorationKeys.filteredProducts.rawValue) as? [Product] else {
+            
+            return
+        }
+        
+        filteredProducts = decodedFilteredProducts
+        restoredState.wasActive = coder.decodeBool(forKey: RestorationKeys.searchControllerIsActive.rawValue)
+        restoredState.wasFirstResponder = coder.decodeBool(forKey: RestorationKeys.searchBarIsFirstResponder.rawValue)
+        searchController.searchBar.text = coder.decodeObject(forKey: RestorationKeys.searchBarText.rawValue) as? String
+    }
+    
+    override func encodeRestorableState(with coder: NSCoder) {
+        super.encodeRestorableState(with: coder)
+        
+        coder.encode(filteredProducts, forKey: RestorationKeys.filteredProducts.rawValue)
+        coder.encode(searchController.isActive, forKey: RestorationKeys.searchControllerIsActive.rawValue)
+        coder.encode(searchController.searchBar.isFirstResponder, forKey: RestorationKeys.searchBarIsFirstResponder.rawValue)
+        coder.encode(searchController.searchBar.text, forKey: RestorationKeys.searchBarText.rawValue)
+    }
+}
+
+// MARK: - Customize UINavigationControllers
+extension UINavigationController {
+    
+    open override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
 }

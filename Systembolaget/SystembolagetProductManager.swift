@@ -18,7 +18,15 @@ class SystembolagetProductManager: NSObject {
     // MARK - Properties
     
     var products: [Product]? = [Product]()
+    var downloadState: DownloadState = .idle
     
+    // MARK: - Types
+    
+    enum DownloadState: String {
+        
+        case active
+        case idle
+    }
     
     // MARK: - Initializers
     
@@ -31,6 +39,7 @@ class SystembolagetProductManager: NSObject {
     
     func getProducts(completion: (()->())? = nil) {
         
+        
         // If products exists in store, we'll reuse that data
         if let products = SystembolagetProductManager.unarchiveProducts(), self.products?.count ?? 0 == 0 {
             
@@ -40,6 +49,10 @@ class SystembolagetProductManager: NSObject {
             
             return
         }
+        
+        guard downloadState != .active else { return }
+        
+        setDownloadState(to: .active)
         
         // Fetch fresh data
         SystembolagetClient.shared().getProducts { (data, error) in
@@ -51,6 +64,8 @@ class SystembolagetProductManager: NSObject {
                 
                 print(error?.localizedDescription ?? "Error unknown.")
                 
+                self.setDownloadState(to: .idle)
+                
                 completion?()
                 
                 return
@@ -59,11 +74,18 @@ class SystembolagetProductManager: NSObject {
             // Populate the products array
             self.products = data
             
+            self.setDownloadState(to: .idle)
+            completion?()
+            
             // Persist fetched products
             self.save()
-            
-            completion?()
         }
+    }
+    
+    private func setDownloadState(to state: DownloadState) {
+        
+        downloadState = state
+        NotificationCenter.default.post(Notification(name: Notification.Name.SystembolagetProductManagerChangedState))
     }
     
     func save() {
@@ -100,4 +122,10 @@ class SystembolagetProductManager: NSObject {
         
         return Singleton.SharedInstance
     }
+}
+
+
+extension NSNotification.Name {
+    
+    static let SystembolagetProductManagerChangedState = Notification.Name(rawValue: "\(String(describing: SystembolagetProductManager.self))ChangedState")
 }
